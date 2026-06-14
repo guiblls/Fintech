@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FinControl Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-slate-100">
+
+<div class="flex min-h-screen">
+
+<aside class="sidebar">
+
+<div class="profile">
+<img src="assents/perfil.png" alt="Foto de Perfil">
+<h2>Guilherme Barcellos</h2>
+<p>Analista de Sistemas</p>
+</div>
+
+<nav>
+<a class="active">Dashboard</a>
+<a>Carteira</a>
+<a>Transações</a>
+<a>Receitas</a>
+<a>Configurações</a>
+</nav>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<input type="text" placeholder="🔍 Procurar">
+
+<div class="icons">
+<span>💬</span>
+<span>🔔</span>
+<span>⚙️</span>
+</div>
+
+</header>
+
+<h1>Dashboard</h1>
+<p class="subtitle">Visão geral da sua vida financeira.</p>
+
+<div class="cards">
+
+<div class="card main-card">
+<h3>Saldo Total</h3>
+<h2>R$ 4.523,98</h2>
+<p class="green">▲ 8% em relação ao mês anterior</p>
+</div>
+
+<div class="card">
+<h3>Receitas</h3>
+<h2 class="green-text">R$ 5.000,00</h2>
+</div>
+
+<div class="card">
+<h3>Despesas</h3>
+<h2 class="red-text">R$ 476,02</h2>
+</div>
+
+<div class="card">
+<h3>Saldo Líquido</h3>
+<h2>R$ 4.523,98</h2>
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<section class="transactions">
+
+<div class="title-row">
+<h3>Últimas transações</h3>
+<a href="#">Ver todas</a>
+</div>
+
+<ul>
+
+<li>
+<span>Mercado Extra</span>
+<span class="red-text">- R$ 223,98</span>
+</li>
+
+<li>
+<span>Salário</span>
+<span class="green-text">+ R$ 5.000,00</span>
+</li>
+
+<li>
+<span>Posto Ipiranga</span>
+<span class="red-text">- R$ 150,00</span>
+</li>
+
+<li>
+<span>Freelance</span>
+<span class="green-text">+ R$ 800,00</span>
+</li>
+
+</ul>
+
+</section>
+
+<section class="chart">
+
+<div class="title-row">
+<h3>Rendimentos Mensais</h3>
+<button>Este mês</button>
+</div>
+
+<div class="graph">
+<div class="line"></div>
+</div>
+
+</section>
+
+<section class="pay-bills">
+
+<div class="title-row">
+<h3>Contas a pagar</h3>
+<a href="#">Ver todas</a>
+</div>
+
+<p>Mantenha suas contas atualizadas.</p>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+<p><strong>14 de 16</strong></p>
+
+</section>
+
+<section class="next-bills">
+
+<div class="title-row">
+<h3>Vencimentos próximos</h3>
+<a href="#">Ver todos</a>
+</div>
+
+<ul>
+
+<li>Salário - R$ 5.000</li>
+<li>Internet - R$ 93</li>
+<li>Aluguel - R$ 3.030</li>
+
+</ul>
+
+</section>
+
+<section class="tips">
+
+<h3>💡 Dica para você</h3>
+
+<p>
+Você gastou 8% a mais com alimentação este mês.
+</p>
+
+<a href="#">Ver análise completa →</a>
+
+</section>
+
+<section class="category">
+
+<div class="title-row">
+<h3>Gastos por categoria</h3>
+<button>Este mês</button>
+</div>
+
+<div class="donut"></div>
+
+<ul>
+
+<li>Moradia - 40%</li>
+<li>Alimentação - 25%</li>
+<li>Transporte - 15%</li>
+<li>Lazer - 10%</li>
+<li>Outros - 10%</li>
+
+</ul>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+</body>
+</html>
