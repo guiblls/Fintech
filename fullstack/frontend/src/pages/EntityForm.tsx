@@ -5,6 +5,7 @@ import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import type { Recurso,Entidade,Usuario,Conta,Investimento } from '../types';
 import { hoje } from '../types';
+import { demoMode } from '../services/demoMode';
 type Valores=Record<string,string>;
 const nomes={usuarios:'usuário',contas:'conta',investimentos:'investimento'};
 function iniciais(recurso:Recurso):Valores {
@@ -34,7 +35,7 @@ export function EntityForm({recurso}:{recurso:Recurso}) {
   try{await api(`/${recurso}${id?'/'+id:''}`,{method:id?'PUT':'POST',body:JSON.stringify(body)});if(recurso==='usuarios'&&Number(id)===usuario?.id)await atualizar();navigate(`/${recurso}`);}catch(e){setErro((e as Error).message);}finally{setBusy(false);}
  }
  let fields:ReactNode;
- if(recurso==='usuarios')fields=<>{input('nome','Nome completo','text',{maxLength:120})}{input('email','E-mail','email',{maxLength:180})}{input('cpf','CPF (11 dígitos)','text',{pattern:'[0-9]{11}',maxLength:11,inputMode:'numeric'})}{input('telefone','Telefone','tel',{required:false,maxLength:20})}{input('senha',id?'Nova senha (deixe vazio para manter)':'Senha','password',{required:!id,minLength:8,maxLength:128,autoComplete:'new-password'})}</>;
+ if(recurso==='usuarios')fields=<>{input('nome','Nome completo','text',{maxLength:120})}{input('email','E-mail','email',{maxLength:180})}{input('cpf','CPF (11 dígitos)','text',{pattern:'[0-9]{11}',maxLength:11,inputMode:'numeric'})}{input('telefone','Telefone','tel',{required:false,maxLength:20})}{!demoMode && input('senha',id?'Nova senha (deixe vazio para manter)':'Senha','password',{required:!id,minLength:8,maxLength:128,autoComplete:'new-password'})}</>;
  else if(recurso==='contas')fields=<>{select('usuarioId','Titular da conta',usuarios.map(u=>({value:String(u.id),label:u.nome+' · '+u.email})))}{select('tipoConta','Tipo de conta',opts(['CORRENTE','POUPANCA','DINHEIRO']))}{input('saldo','Saldo informado (R$)','number',{min:0,max:'9999999999999.99',step:'0.01'})}{input('dataAbertura','Data de abertura','date',{max:hoje()})}{select('statusConta','Status',opts(['ATIVA','INATIVA']))}</>;
  else fields=<>{input('nomeInvestimento','Nome do investimento','text',{maxLength:120})}{select('contaId','Conta vinculada',contas.map(c=>({value:String(c.id),label:`#${c.id} · ${c.usuario.nome} · ${c.tipoConta} (${c.statusConta})`})))}{select('tipoInvestimento','Tipo',opts(['CDB','TESOURO DIRETO','POUPANCA','FUNDO','ACOES','OUTROS']))}{input('valorAplicado','Valor aplicado (R$)','number',{min:'0.01',max:'9999999999999.99',step:'0.01'})}{input('rentabilidade','Rentabilidade de referência (% ao ano)','number',{min:-100,max:'99999.99',step:'0.01'})}{input('prazo','Prazo (meses)','number',{min:0,max:1200,step:1})}{input('dataAplicacao','Data de aplicação','date',{max:hoje()})}{select('statusInvestimento','Status',opts(['ATIVO','RESGATADO']))}</>;
  const semVinculo=(recurso==='contas'&&!usuarios.length)||(recurso==='investimentos'&&!contas.length);

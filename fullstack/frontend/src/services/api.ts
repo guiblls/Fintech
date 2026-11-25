@@ -1,5 +1,13 @@
+import { demoMode } from './demoMode';
 export class ApiError extends Error { constructor(message: string, public status: number) { super(message); } }
 export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
+ if(demoMode) {
+  const {demoRequest}=await import('./demo');
+  try{return demoRequest(path,options) as T;}catch(error){
+   if(path==='/auth/me')throw new ApiError('Sessão de demonstração encerrada.',401);
+   throw error;
+  }
+ }
  let response: Response;
  try { response=await fetch(`/api${path}`, { ...options, credentials: 'include', headers: { 'Content-Type': 'application/json', 'X-FinControl-Request': 'FinControl', ...options.headers } }); }
  catch { throw new ApiError('Não foi possível acessar o servidor. Confira se o backend está em execução.',0); }
