@@ -4,7 +4,15 @@ Painel de finanças pessoais desenvolvido para a disciplina de Front-End do curs
 
 [Visualizar o painel no GitHub Pages](https://guiblls.github.io/Fintech/)
 
-## O que explorar
+## Aplicação full stack · Grand Finale
+
+[Abrir o código e as instruções de execução](fullstack/README.md) · [Consultar o registro de validação](fullstack/VALIDACAO.md)
+
+A entrega full stack reúne React e TypeScript na interface, uma API Java com Spring Boot e persistência prevista em Oracle via Spring Data JPA. O domínio relaciona usuários, contas e investimentos. Ao cadastrar uma conta, o formulário envia os dados à API, o serviço consulta o titular e o repositório salva a conta no banco configurado.
+
+O link do GitHub Pages acima apresenta o painel estático original. Para experimentar o login e os cadastros da aplicação full stack, siga as instruções de execução local. A validação de ponta a ponta com o Oracle da FIAP está pendente.
+
+## O que explorar no painel estático
 
 - Os cartões superiores exibem o resumo financeiro do mês.
 - A lista de transações distingue entradas e saídas e mostra o valor de cada movimentação.

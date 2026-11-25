@@ -1,0 +1,8 @@
+import { NavLink, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+export function Layout() {
+ const {usuario,sair}=useAuth(); const [erro,setErro]=useState('');const [saindo,setSaindo]=useState(false);
+ async function logout() {setSaindo(true);try{await sair();}catch(e){setErro((e as Error).message);}finally{setSaindo(false);}}
+ return <div className="app-shell"><aside className="sidebar"><a className="brand" href="/">f<span>FinControl</span><i>●</i></a><p className="nav-label">SEU PAINEL</p><nav aria-label="Navegação principal"><NavLink to="/" end><span>▦</span> Visão geral</NavLink><NavLink to="/usuarios"><span>◎</span> Usuários</NavLink><NavLink to="/contas"><span>▤</span> Contas</NavLink><NavLink to="/investimentos"><span>↗</span> Investimentos</NavLink></nav><div className="side-note"><strong>Clareza para decidir.</strong><p>Organize suas contas e acompanhe suas aplicações em um só lugar.</p></div><div className="profile"><div className="avatar">{usuario?.nome.charAt(0)}</div><div><strong>{usuario?.nome}</strong><small>Painel de gestão</small></div></div><button className="logout" onClick={logout} disabled={saindo}>{saindo?'Saindo…':'Sair da conta →'}</button>{erro&&<p role="alert" className="error">{erro}</p>}</aside><div className="main-shell"><header className="topbar"><span>FINANÇAS / <b>PAINEL DE GESTÃO</b></span><span className="top-user">Olá, {usuario?.nome.split(' ')[0]}</span></header><main><Outlet/></main><footer>FinControl · Projeto acadêmico FIAP <span>Organização hoje. Planos para amanhã.</span></footer></div></div>;
+}
